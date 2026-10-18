@@ -80,3 +80,18 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; add ~/code to be one of the project so that Projectile
+;; knows each project in the ~/code when I search for projects
+(setq projectile-project-search-path '(("/Users/happymix/code" . 2)))
+
+(
+ use-package! rg
+  :commands
+    (rg-menu rg-project rg-dwim) ; load rg only when one of these runs
+  :config
+    (setq wgrep-auto-save-buffer t) ; applying edits also saves the files (no :wa)
+)
+
+;; Show results as a sidebar on the left, VSCode-style, and keep it open.
+(set-popup-rule! "^\\*rg\\*" :side 'left :size 0.35 :select t :quit nil)
